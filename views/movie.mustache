@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My moovies</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css'>
+    <link rel="stylesheet" href="/stylesheets/movie.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
+  </head>
+  <body>
+      {{> navbar}}
+      <div id="container">
+        <div id="info">
+          <span id=title>{{title}}</span>
+          <span id="rate-info">{{rating}}/10</span>
+          <div id="rating" class="progress">
+            <div id="rate-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        <div id="poster-desc">
+          <img id="poster" src={{poster}}>
+          <div id="desc">
+            <span class="details" id="writer">SCENARIUSZ</span><span class="content" id="writer-content">{{writer}}</span>
+            <span class="details" id="director">REŻYSERIA</span><span class="content" id="director-content">{{director}}</span>
+            <span class="details" id="plot">FABUŁA</span><span class="content" id="plot-content">{{plot}}</span>
+            <span class="details" id="stars">OBSADA</span><span class="content" id="stars-content">{{stars}}</span>
+            <span class="details" id="genre">GATUNEK</span><span class="content" id="genre-content">{{genre}}</span>
+            <span class="details" id="premiere">PREMIERA</span><span class="content" id="premiere-content">{{premiere}}</span>
+            <button id="more-info" name={{movieid}}>WIĘCEJ INFORMACJI</div>
+          </div>
+        </div>
+      </div>
+
+      <script src="/javascripts/bootstrap.min.js"></script>
+      <script src="/javascripts/movie-script.js"></script>
+  <body>
+</html>

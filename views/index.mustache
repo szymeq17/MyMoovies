@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My moovies</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css'>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
+  </head>
+  <body>
+      {{> navbar}}
+      <div id="search">
+        <div class="input-group mb-3">
+          <input id="search-field" type="text" class="form-control" placeholder="Wyszukaj tytuł" aria-label="Wyszukaj tytuł" aria-describedby="button-addon2">
+          <button id="search-btn" class="btn btn-outline-secondary" type="button" id="button-addon2">Szukaj</button>
+        </div>
+        <div id="count-results"></div>
+        <div id="results">
+        </div>
+      </div>
+
+      <script src="/javascripts/bootstrap.min.js"></script>
+      <script src="/javascripts/main-script.js"></script>
+  <body>
+</html>

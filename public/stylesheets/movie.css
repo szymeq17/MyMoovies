@@ -1,0 +1,97 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+#container {
+    display:inline-block;
+}
+
+#poster {
+    height: auto; 
+    width: auto; 
+    max-width: 400px; 
+    max-height: 400px;
+    margin: 30px;
+    float: left;
+    border: 4px solid lightgray;
+    border-radius: 4px;
+}
+
+#info {
+    margin-top: 30px;
+    margin-left: 30px;
+    display: inline-block;
+}
+#title {
+    display: block;
+    font-size: 45px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+#rating {
+    width: 400px;
+}
+#year {
+    display: inline-block;
+    font-weight: bold;
+    color: #007BFF;
+}
+
+#time { 
+    display: block;
+    font-weight: bold;
+    color:#007BFF;
+    margin-bottom: 20px;
+}
+
+#type {
+    display: inline-block;
+    margin-left: 20%;
+    font-weight: bold;
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+
+#rate-info {
+    color: #007BFF;
+    font-weight: bold;  
+}
+
+#poster-desc {
+    display:block;
+    width: 1000px;
+    overflow: visible;
+}
+#desc {
+    display: inline-block;
+    height: 300px;
+    width: 400px;
+    margin: 30px;
+}
+
+.details {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.content {
+    display: block;
+    margin-top: 0px;
+}
+
+#more-info {
+    margin-top: 15px;
+    height: 30px;
+    width: 150px;
+    background-color: #007BFF;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    border: 0px;
+    transition: background-color 0.5s;
+}
+
+#more-info:hover {
+    background-color: #0054ad;
+}

@@ -1,0 +1,58 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#search {
+  margin: 50px; 
+  height: auto; 
+}
+
+#results {
+  margin-top: 20px;
+  height:auto;
+  overflow:visible;
+  text-align:center;
+}
+
+.movie {
+  float: left;
+  width: 200px;
+  height: 320px;
+  text-align: center;
+  margin: 30px 20px;
+  position: relative;
+  bottom: 0px;
+  transition: bottom 0.15s;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+}
+
+.movie-year {
+  font-size: 10px;
+  display: block;
+}
+
+.movie-title {
+  max-height: 30px;
+}
+
+.results-counter {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.movie:hover {
+  bottom: 20px;
+}
+
+.poster {
+  height: 296px;
+  width: 200px;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: box-shadow 0.15s;
+}
+
+.poster:hover {
+  box-shadow: 0 0 20px #4167CE;
+}
