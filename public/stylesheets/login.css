@@ -1,0 +1,17 @@
+.box {
+    height: 330px;
+    width: 400px;
+    border: 2px solid #4167CE;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 20px;
+}
+
+#register-box {
+    height: 370px;
+}

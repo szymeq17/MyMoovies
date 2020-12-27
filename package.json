@@ -12,6 +12,7 @@
     "express-mustache": "^1.0.4",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "mongoose": "^5.11.8",
     "morgan": "~1.9.1",
     "request": "^2.88.2"
   }
