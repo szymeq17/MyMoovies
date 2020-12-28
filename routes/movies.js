@@ -14,7 +14,14 @@ router.get('/:id', function(req, res, next) {
       runtime: body.Runtime,
       genre: body.Genre,
       rating: body.imdbRating,
-      poster: body.Poster,
+      poster: function() {
+        if(body.Poster === "N/A") {
+          return "/images/notfound.jpg";
+        }
+        else {
+          return body.Poster;
+        }
+      },
       plot: body.Plot,
       premiere: body.Released,
       movieid: id,

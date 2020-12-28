@@ -24,11 +24,25 @@
                 </ul>
               </li>
             </ul>
+            {{^logged}}
             <ul class="navbar-nav mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Zaloguj</a>
+              <li class="nav-item">     
+                <a class="nav-link " href="/login" tabindex="-1" aria-disabled="true">Zaloguj</a>
               </li>
             </ul>
+            {{/logged}}
+            {{#logged}}
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">     
+                <a class="nav-link " href="/login" tabindex="-1" aria-disabled="true">Moje konto</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">     
+                <a class="nav-link " href="/logout" tabindex="-1" aria-disabled="true">Wyloguj</a>
+              </li>
+            </ul>
+            {{/logged}}
           </div>
         </div>
       </nav>

@@ -13,5 +13,11 @@
 }
 
 #register-box {
-    height: 370px;
+    height: 400px;
+}
+
+.msg-info {
+    height: 22px;
+    color: red;
+    font-size: 12px;
 }

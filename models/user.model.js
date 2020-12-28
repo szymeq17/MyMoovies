@@ -1,15 +1,13 @@
 const mongoose = require('mongoose');
 
-var userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     username: {
-        type: String,
-        required: "To pole jest wymagane"
+        type: String
     },
     password: {
-        type: String,
-        required: "To pole jest wymagane"
+        type: String
     }
-});
+}, {collection: "users"});
 
 const User = mongoose.model("User", userSchema);
 

@@ -10,20 +10,22 @@
   </head>
   <body>
     <div class="box" id="register-box">
-        <form>
+        <form method="POST" action="register">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Nazwa użytkownika</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              <input type="text" class="form-control" id="exampleInputEmail1" name="username">
+              <div id="username-err" class="msg-info">{{usernameErr}}</div>
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Hasło</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password1">
+              <div id="password-err" class="msg-info">{{passwordErr}}</div>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Powtórz hasło</label>
-                <input type="password" class="form-control" id="exampleInputPassword2">
-              </div>
+                <input type="password" class="form-control" id="exampleInputPassword2" name="password2">
+                <div id="error-msg" class="msg-info">{{errorMsg}}</div>
+            </div>
             <button type="submit" class="btn btn-primary">Utwórz konto</button>
           </form>
     </div>

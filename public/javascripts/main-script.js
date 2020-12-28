@@ -26,20 +26,47 @@ function appendMovies(movies) {
     var title = '';
     var img = '';
     var year = ''
+    var id = '';
+    var rate = '';
     var numberOfFilms = Object.keys(movies).length.toString();
     $("#count-results").empty();
     $("#count-results").append("<span class='results-counter'>" + "Liczba znalezionych wyników: " + numberOfFilms + "</span>");
+    
     for (movie in movies) {
         title = movies[movie].Title;
         img = movies[movie].Poster;
         year = movies[movie].Year;
-        $("#results").append("<div class='movie'" + "id=" + movies[movie].imdbID + "> <img class='poster' src= " + img + ">"
-                             + "<span class='movie-title'>" + title + "</span> <span class='movie-year'>" + year + "</span></div>");
+        id = movies[movie].imdbID;
+        if(img === "N/A") {
+            img = "/images/notfound.jpg";
+        }
+        
+        $("#results").append("<div class='movie blank-movie'" + "id=" + id + "><div class='rate-circle'></div> <img class='poster' src= " + img + ">"
+        + "<span class='movie-title'>" + title + "</span> <span class='movie-year'>" + year + "</span></div>");
+       
+        
+        var movieInfo = $.ajax({
+                url: 'http://www.omdbapi.com/?apikey=59aa53ec&i='+id,
+                type: 'GET',
+                async: false,
+                success: function(data) {
+                    rate = data.imdbRating;
+                    if(rate === "N/A") {
+                        rate = "?";
+                    }
+                    $("#"+id+" .rate-circle").append(rate);
+                }
+        });
+
+
+        
         $("#"+ movies[movie].imdbID).click(function () { 
             window.location = window.location + "movies/" + $(this).attr("id");
-            console.log("aaa"); 
         });
+        
+        $("#"+id).removeClass("blank-movie");
     }
+    
 }
 
 $(function(){
