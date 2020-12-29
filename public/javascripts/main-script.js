@@ -41,7 +41,7 @@ function appendMovies(movies) {
             img = "/images/notfound.jpg";
         }
         
-        $("#results").append("<div class='movie blank-movie'" + "id=" + id + "><div class='rate-circle'></div> <img class='poster' src= " + img + ">"
+        $("#results").append("<div class='movie blank-movie'" + "id=" + id + "><div class='rate-circle'></div><img class='heart' src='/images/heart.png'><img class='poster' src= " + img + ">"
         + "<span class='movie-title'>" + title + "</span> <span class='movie-year'>" + year + "</span></div>");
        
         
@@ -62,7 +62,19 @@ function appendMovies(movies) {
         
         $("#"+ movies[movie].imdbID).click(function () { 
             window.location = window.location + "movies/" + $(this).attr("id");
+        }).find(".heart").click(() => {return false;});
+
+        $("#"+ movies[movie].imdbID).find(".heart").click(function() {
+            if($(this).attr("src") === "/images/heart.png") {
+                $(this).attr("src", "/images/fullheart.png");
+            }
+            else {
+                $(this).attr("src", "/images/heart.png");
+            }
         });
+
+        $("#"+ movies[movie].imdbID).hover(function() {$(this).find(".heart").fadeIn(500);},
+                                           function() {$(this).find(".heart").fadeOut(500);});
         
         $("#"+id).removeClass("blank-movie");
     }

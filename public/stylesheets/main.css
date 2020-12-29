@@ -76,3 +76,18 @@ body {
   font-weight: bold;
   line-height: 40px;
 }
+
+.heart {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 10px;
+  top: 30px;
+  display: none;
+  transition: width 0.15s, height 0.15s;
+}
+
+.heart:hover {
+  width: 33px;
+  height: 33px;
+}
