@@ -7,7 +7,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
-const bestRouter = require('./routes/best');
+const favouriteRouter = require('./routes/favourite');
 const moviesRouter = require('./routes/movies');
 
 const app = express();
@@ -28,7 +28,7 @@ app.use(session({
 }));
 
 app.use('/', indexRouter);
-app.use('/best', bestRouter);
+app.use('/favourite', favouriteRouter);
 app.use('/movies', moviesRouter);
 
 // catch 404 and forward to error handler

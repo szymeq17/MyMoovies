@@ -116,10 +116,23 @@ router.post('/register', function(req, res, next) {
                     });
     }
   });
-  
-  
+});
 
-
+router.get('/fav', function(req, res, next) {
+  var username = req.session.username;
+  if(req.session.loggedin) {
+    User.find({"username": username}).select("favourites").exec(function(err, value) {
+      if(err) {
+        res.send(err);
+      }
+      else {
+      res.send(value);
+      }
+    });
+  }
+  else {
+    res.send("not logged");
+  }
 });
 
 module.exports = router;

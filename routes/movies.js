@@ -48,10 +48,9 @@ router.get('/like/:id', function(req, res, next) {
   else {
     res.redirect("/login");
   }
-
 });
 
-router.post('/unlike/:id', function(req, res, next) {
+router.get('/unlike/:id', function(req, res, next) {
   var id = req.params.id;
   if(req.session.loggedin) {
     User.findOne({username: req.session.username}).updateOne({$pull : {
@@ -59,24 +58,12 @@ router.post('/unlike/:id', function(req, res, next) {
                "movie_id": id,
              }
     }}).exec();
-    res.status(200).end();
+    res.status(201).end();
   }
   else {
     res.redirect("/login");
   }
 
-});
-
-router.get('/fav/:username', function(req, res, next) {
-  var username = req.params.username;
-  if(req.session.loggedin) {
-    User.find({"username": username}).select("favourites").exec(function(err, value) {
-      if(err) {
-        res.send(err);
-      }
-      res.send(value);
-    });
-  }
 });
 
 

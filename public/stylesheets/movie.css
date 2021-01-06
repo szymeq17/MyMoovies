@@ -1,6 +1,7 @@
 body {
-    font-family: 'Lato', sans-serif;
-}
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: rgb(63, 63, 63);
+  }
 
 #container {
     display:inline-block;

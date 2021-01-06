@@ -22,22 +22,66 @@ function searchMovies(phrase) {
        });
 }
 
+function like(id) {
+    return function() {
+        if($(this).attr("src") === "/images/heart.png") {
+            $(this).attr("src", "/images/fullheart.png");
+            console.log(id);
+            $.ajax({
+                url: "movies/like/"+ id,
+                method: "GET",
+                async: false
+            }).done(function(data, statusTest, xhr) {
+                if(xhr.status === 200) {
+                     $('body').replaceWith(data);
+                }
+            });
+        }
+        else {
+            $(this).attr("src", "/images/heart.png");
+            $.ajax({
+                url: "movies/unlike/"+ id,
+                method: "GET",
+                async: false
+            }).done(function(data, statusTest, xhr) {
+                if(xhr.status === 200) {
+                     $('body').replaceWith(data);
+                }
+            });
+        }
+    };
+}
+
 function appendMovies(movies) {
-    var title = '';
-    var img = '';
-    var year = ''
-    var id = '';
-    var rate = '';
+    // var title = '';
+    // var img = '';
+    // var year = ''
+    // var id = '';
+    // var rate = '';
     var numberOfFilms = Object.keys(movies).length.toString();
+    var liked = [];
     $("#count-results").empty();
     $("#welcome").empty();
     $("#count-results").append("<span class='results-counter'>" + "Liczba znalezionych wyników: " + numberOfFilms + "</span>");
+
+    $.ajax({
+        url: "fav",
+        type: "GET",
+        dataType: "json",
+        async: false,
+        success: function(data) {
+            var result = data[0].favourites;
+            for(var entry in result) {
+                liked.push(result[entry].movie_id);
+            }
+        }
+    });
     
     for (movie in movies) {
-        title = movies[movie].Title;
-        img = movies[movie].Poster;
-        year = movies[movie].Year;
-        id = movies[movie].imdbID;
+        var title = movies[movie].Title;
+        var img = movies[movie].Poster;
+        var year = movies[movie].Year;
+        var id = movies[movie].imdbID;
         if(img === "N/A") {
             img = "/images/notfound.jpg";
         }
@@ -45,13 +89,16 @@ function appendMovies(movies) {
         $("#results").append("<div class='movie blank-movie'" + "id=" + id + "><div class='rate-circle'></div><img class='heart' src='/images/heart.png'><img class='poster' src= " + img + ">"
         + "<span class='movie-title'>" + title + "</span> <span class='movie-year'>" + year + "</span></div>");
        
+        if(liked.includes(id)) {
+            $("#" + id).find(".heart").attr("src", "/images/fullheart.png");
+        }
         
         var movieInfo = $.ajax({
                 url: 'http://www.omdbapi.com/?apikey=59aa53ec&i='+id,
                 type: 'GET',
                 async: false,
                 success: function(data) {
-                    rate = data.imdbRating;
+                    var rate = data.imdbRating;
                     if(rate === "N/A") {
                         rate = "?";
                     }
@@ -65,30 +112,7 @@ function appendMovies(movies) {
             window.location = window.location + "movies/" + $(this).attr("id");
         }).find(".heart").click(() => {return false;});
 
-        $("#"+ movies[movie].imdbID).find(".heart").click(function() {
-            if($(this).attr("src") === "/images/heart.png") {
-                $(this).attr("src", "/images/fullheart.png");
-                $.ajax({
-                    url: "movies/like/"+ movies[movie].imdbID,
-                    method: "GET"
-                }).done(function(data, statusTest, xhr) {
-                    if(xhr.status === 200) {
-                         $('body').replaceWith(data);
-                    }
-                });
-            }
-            else {
-                $(this).attr("src", "/images/heart.png");
-                $.ajax({
-                    url: "movies/unlike/"+ movies[movie].imdbID,
-                    method: "POST"
-                }).done(function(data, statusTest, xhr) {
-                    if(xhr.status === 200) {
-                         $('body').replaceWith(data);
-                    }
-                });
-            }
-        });
+        $("#"+ id).find(".heart").click(like(id));
 
         $("#"+ movies[movie].imdbID).hover(function() {$(this).find(".heart").fadeIn(500);},
                                            function() {$(this).find(".heart").fadeOut(500);});
@@ -100,19 +124,16 @@ function appendMovies(movies) {
 
 $(function(){
 
-    var un = {{username}};
-    console.log(un);
-
     $("#search-btn").click(function() {
         $("#results").empty();
         searchMovies($("#search-field").val());
-    })
+    });
     $("#search-field").on("keypress", function(e) {
         if(e.which == 13) {
             $("#results").empty();
             searchMovies($("#search-field").val());
         }
-    })
+    });
     $("#search-field").val('');
 
-})
+});
