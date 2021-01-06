@@ -6,8 +6,15 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String
+    },
+    favourites: { 
+        type: Array , "default" : [] 
+    },
+    role: {
+        type: String
     }
-}, {collection: "users"});
+},
+ {collection: "users"});
 
 const User = mongoose.model("User", userSchema);
 

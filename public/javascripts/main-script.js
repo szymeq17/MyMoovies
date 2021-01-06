@@ -30,6 +30,7 @@ function appendMovies(movies) {
     var rate = '';
     var numberOfFilms = Object.keys(movies).length.toString();
     $("#count-results").empty();
+    $("#welcome").empty();
     $("#count-results").append("<span class='results-counter'>" + "Liczba znalezionych wyników: " + numberOfFilms + "</span>");
     
     for (movie in movies) {
@@ -67,9 +68,25 @@ function appendMovies(movies) {
         $("#"+ movies[movie].imdbID).find(".heart").click(function() {
             if($(this).attr("src") === "/images/heart.png") {
                 $(this).attr("src", "/images/fullheart.png");
+                $.ajax({
+                    url: "movies/like/"+ movies[movie].imdbID,
+                    method: "GET"
+                }).done(function(data, statusTest, xhr) {
+                    if(xhr.status === 200) {
+                         $('body').replaceWith(data);
+                    }
+                });
             }
             else {
                 $(this).attr("src", "/images/heart.png");
+                $.ajax({
+                    url: "movies/unlike/"+ movies[movie].imdbID,
+                    method: "POST"
+                }).done(function(data, statusTest, xhr) {
+                    if(xhr.status === 200) {
+                         $('body').replaceWith(data);
+                    }
+                });
             }
         });
 
@@ -82,6 +99,10 @@ function appendMovies(movies) {
 }
 
 $(function(){
+
+    var un = {{username}};
+    console.log(un);
+
     $("#search-btn").click(function() {
         $("#results").empty();
         searchMovies($("#search-field").val());

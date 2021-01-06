@@ -15,12 +15,15 @@
           <input id="search-field" type="text" class="form-control" placeholder="Wyszukaj tytuł" aria-label="Wyszukaj tytuł" aria-describedby="button-addon2">
           <button id="search-btn" class="btn btn-outline-secondary" type="button" id="button-addon2">Szukaj</button>
         </div>
+        {{#logged}}
+          <div id="welcome">Witaj {{username}}!</div>
+        {{/logged}}
         <div id="count-results"></div>
         <div id="results">
         </div>
       </div>
       <div id="loader"></div>
       <script src="/javascripts/bootstrap.min.js"></script>
-      <script src="/javascripts/main-script.js"></script>
+      <script type="x-tmpl-mustache" src="/javascripts/main-script.js"></script>
   <body>
 </html>

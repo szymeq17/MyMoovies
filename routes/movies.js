@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+const User = require('../models/user.model');
+var session = require('express-session');
 
 
 router.get('/:id', function(req, res, next) {
@@ -32,5 +34,50 @@ router.get('/:id', function(req, res, next) {
   }
   });
 });
+
+router.get('/like/:id', function(req, res, next) {
+  var id = req.params.id;
+  if(req.session.loggedin) {
+    User.findOne({username: req.session.username}).updateOne({$push : {
+      favourites :  {
+               "movie_id": id,
+             }
+    }}).exec();
+    res.status(201).end();
+  }
+  else {
+    res.redirect("/login");
+  }
+
+});
+
+router.post('/unlike/:id', function(req, res, next) {
+  var id = req.params.id;
+  if(req.session.loggedin) {
+    User.findOne({username: req.session.username}).updateOne({$pull : {
+      favourites :  {
+               "movie_id": id,
+             }
+    }}).exec();
+    res.status(200).end();
+  }
+  else {
+    res.redirect("/login");
+  }
+
+});
+
+router.get('/fav/:username', function(req, res, next) {
+  var username = req.params.username;
+  if(req.session.loggedin) {
+    User.find({"username": username}).select("favourites").exec(function(err, value) {
+      if(err) {
+        res.send(err);
+      }
+      res.send(value);
+    });
+  }
+});
+
 
 module.exports = router;

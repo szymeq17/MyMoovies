@@ -11,9 +11,9 @@ router.get('/', function(req, res, next) {
     logged = true;
   }
   else {
-    console.log("Nie działa");
+    console.log("Użytkownik niezalogowany");
   }
-  res.render('index', {logged: logged});
+  res.render('index', {logged: logged, username: req.session.username});
 });
 
 /* get login page */
@@ -37,6 +37,15 @@ router.post('/login', function(req, res, next) {
       res.send("Niepoprawne dane logowania");
     }
   });
+  /*
+  User.findOne({username: username}).update({
+    $push : {
+       favourites :  {
+                "movie_id": "321123",
+              } //inserted data is the object to be inserted 
+     }
+   }).exec()
+   */
 });
 
 /* logout */
